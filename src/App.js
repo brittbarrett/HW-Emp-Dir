@@ -1,6 +1,8 @@
 import React from "react";
-import Navbar from "./components/Navbar/navbar";
-import Jumbotron from "./components/Jumbotron/jumbotron.js";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Search from "./pages/Search";
+import Navbar from "./components/Navbar";
+
 import "./App.css";
 
 function App() {
