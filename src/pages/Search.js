@@ -8,7 +8,7 @@ import Alert from "../components/Alert";
 class Search extends Component {
   state = {
     search: "",
-    breeds: [],
+    employees: [],
     results: [],
     employeeArray: [],
     error: "",
@@ -19,13 +19,30 @@ class Search extends Component {
     API.getEmployee().then((employeeResult) =>
       this.setState({ employeeArray: employeeResult.data.results })
     );
-    // API.getBaseBreedsList()
-    //   .then((res) => this.setState({ breeds: res.data.message }))
-    //   .catch((err) => console.log(err));
   }
 
   searchName = () => {
-    console.log(this.state.employeeArray.name.sort());
+    console.log(this.state.employeeArray.sort());
+  };
+
+  findEmployee = () => {
+    console.log("finding person...");
+  };
+
+  searchImage = () => {
+    console.log("inside image function");
+  };
+
+  searchDOB = () => {
+    console.log("inside dob fx");
+  };
+
+  searchPhone = () => {
+    console.log("inside phone fx");
+  };
+
+  searchEmail = () => {
+    console.log("inside email fx");
   };
 
   handleInputChange = (event) => {
@@ -34,7 +51,7 @@ class Search extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    API.getDogsOfBreed(this.state.search)
+    API.getEmployee(this.state.search)
       .then((res) => {
         if (res.data.status === "error") {
           throw new Error(res.data.message);
@@ -47,7 +64,7 @@ class Search extends Component {
     return (
       <div>
         <Container style={{ minHeight: "80%" }}>
-          <h1 className="text-center">Search By Breed!</h1>
+          <h1 className="text-center">Search for employee!</h1>
           <Alert
             type="danger"
             style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
@@ -57,8 +74,9 @@ class Search extends Component {
 
           <SearchForm
             handleFormSubmit={this.handleFormSubmit}
-            handleInputChange={this.handleInputChange}
-            breeds={this.state.breeds}
+            handleInputok
+            onChange={this.handleInputChange}
+            employees={this.state.employees}
           />
 
           <EmployeeSearchResults
