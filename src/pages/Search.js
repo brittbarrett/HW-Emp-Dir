@@ -21,34 +21,54 @@ class Search extends Component {
     );
   }
 
-  searchName = () => {
+  // SORT BY NAME - WORKING
+  sortName = () => {
     console.log(this.state.employeeArray.sort());
+    this.setState({
+      employeeArray: this.state.employeeArray.sort((a, b) =>
+        a.name.last > b.name.last ? 1 : -1
+      ),
+    });
   };
 
-  findEmployee = () => {
-    console.log("finding person...");
+  // SORT BY DATE OF BIRTH - WORKS
+  sortDOB = () => {
+    console.log(
+      this.state.employeeArray.sort((a, b) =>
+        parseInt(a.dob.date) > parseInt(b.dob.date) ? 1 : -1
+      )
+    );
+    this.setState({
+      employeeArray: this.state.employeeArray.sort((a, b) =>
+        parseInt(a.dob.date) > parseInt(b.dob.date) ? 1 : -1
+      ),
+    });
   };
 
-  searchImage = () => {
-    console.log("inside image function");
+  // SORT BY EMAIL - WORKS
+  sortEmail = () => {
+    console.log(
+      this.state.employeeArray.sort((a, b) => (a.email > b.email ? 1 : -1))
+    );
+
+    this.setState({
+      employeeArray: this.state.employeeArray.sort((a, b) =>
+        a.email > b.email ? 1 : -1
+      ),
+    });
   };
 
-  searchDOB = () => {
-    console.log("inside dob fx");
-  };
-
-  searchPhone = () => {
-    console.log("inside phone fx");
-  };
-
-  searchEmail = () => {
-    console.log("inside email fx");
-  };
-
+  // HANDLE CHANGE OF INPUT AREA
   handleInputChange = (event) => {
+    console.log("handleinputchange working");
     this.setState({ search: event.target.value });
+    //you will need to do some algo to find ppl
+    //1. you have to sort through youremployarr
+    //once it is good
+    //2. you update the state of your employarr
   };
 
+  // HANDLE FORM SUBMIT
   handleFormSubmit = (event) => {
     event.preventDefault();
     API.getEmployee(this.state.search)
@@ -74,14 +94,17 @@ class Search extends Component {
 
           <SearchForm
             handleFormSubmit={this.handleFormSubmit}
-            handleInputok
-            onChange={this.handleInputChange}
+            // handleInputok
+
+            handleInputChange={this.handleInputChange}
             employees={this.state.employees}
           />
 
           <EmployeeSearchResults
-            searchName={this.searchName}
+            sortName={this.sortName}
             results={this.state.employeeArray}
+            sortDOB={this.sortDOB}
+            sortEmail={this.sortEmail}
           />
         </Container>
       </div>

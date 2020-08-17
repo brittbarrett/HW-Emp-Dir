@@ -6,29 +6,18 @@ function EmployeeSearchResults(props) {
     <div>
       <div className="container">
         <div className="row justify-content-md-center">
-          <button onClick={() => props.searchName()} className="">
+          <button onClick={() => props.sortName()} className="">
             Name
           </button>
+
           <button
-            onClick={() => props.searchImage()}
-            className="btn btn-outline-primary"
-          >
-            Image
-          </button>
-          <button
-            onClick={() => props.searchPhone()}
-            className="btn btn-outline-primary"
-          >
-            Phone number
-          </button>
-          <button
-            onClick={() => props.searchEmail()}
+            onClick={() => props.sortEmail()}
             className="btn btn-outline-primary"
           >
             Email
           </button>
           <button
-            onClick={() => props.searchDob()}
+            onClick={() => props.sortDOB()}
             className="btn btn-outline-primary"
           >
             Birthday
@@ -37,7 +26,7 @@ function EmployeeSearchResults(props) {
 
         <ul className="">
           {props.results.map((result) => (
-            <li key={result.dob.date} className="list-group-item bg-light">
+            <div key={result.dob.date} className="list-group-item bg-light">
               <div className="row bg-light">
                 <div className="col-3 bg-light">
                   <li className="list-group-item text-center profileArea max-width: 100%; bg-light">
@@ -57,7 +46,7 @@ function EmployeeSearchResults(props) {
                   <li className="list-group-item">{" " + result.dob.date}</li>
                 </div>
               </div>
-            </li>
+            </div>
           ))}
         </ul>
       </div>
